@@ -10,14 +10,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GrpcServerApplication implements ApplicationRunner {
 
-	final int PORT = 50051;
+	/**final int PORT = 50051;
 	Server server = ServerBuilder.forPort(PORT)
 			.addService(new GreeterImpl())
-			.build();
+			.build();**/
+
+	final int PORT = 50052;
+	 Server server = ServerBuilder.forPort(PORT)
+	 .addService(new FileUploadService())
+	 .build();
+
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		server.start();
 	}
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(GrpcServerApplication.class, args);
