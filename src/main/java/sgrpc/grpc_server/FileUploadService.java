@@ -19,6 +19,8 @@ public class FileUploadService extends FileServiceGrpc.FileServiceImplBase{
 
     @Override
     public StreamObserver<FileUploadRequest> upload(StreamObserver<FileUploadResponse> responseObserver) {
+        System.out.println("Server Started, listening on {{port}}");
+
         return new StreamObserver<FileUploadRequest>() {
             OutputStream writer;
             Status status = Status.IN_PROGRESS;
@@ -26,7 +28,7 @@ public class FileUploadService extends FileServiceGrpc.FileServiceImplBase{
             @Override
             public void onNext(FileUploadRequest fileUploadRequest) {
                 try {
-                    if(fileUploadRequest.getMetadata() != null){ //fileUploadRequest.hasMetadata() 안 됨
+                    if(fileUploadRequest.getMetadata() == null){ //fileUploadRequest.hasMetadata() 안 됨
                         writer = getFilePath(fileUploadRequest);
                     }else{
                         writeFile(writer, fileUploadRequest.getFile().getContents());
@@ -51,6 +53,7 @@ public class FileUploadService extends FileServiceGrpc.FileServiceImplBase{
                         .setStatus(status)
                         .build();
 
+                //response를 주는 StreamObserver
                 responseObserver.onNext(response);
                 responseObserver.onCompleted();
             }
