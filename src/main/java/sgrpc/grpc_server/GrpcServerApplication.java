@@ -17,12 +17,13 @@ public class GrpcServerApplication implements ApplicationRunner {
 
 	final int PORT = 50052;
 	 Server server = ServerBuilder.forPort(PORT)
-	 .addService(new FileUploadService())
-	 .build();
+			 .addService(new FileUploadService())
+			 .build();
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		server.start();
+		System.out.println("Server Started, listening on " + PORT);
 	}
 
 

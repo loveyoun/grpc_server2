@@ -19,7 +19,6 @@ public class FileUploadService extends FileServiceGrpc.FileServiceImplBase{
 
     @Override
     public StreamObserver<FileUploadRequest> upload(StreamObserver<FileUploadResponse> responseObserver) {
-        System.out.println("Server Started, listening on {{port}}");
 
         return new StreamObserver<FileUploadRequest>() {
             OutputStream writer;
