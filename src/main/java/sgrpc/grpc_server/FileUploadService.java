@@ -77,6 +77,7 @@ public class FileUploadService extends FileServiceGrpc.FileServiceImplBase{
     }
     private void closeFile(OutputStream writer){
         try {
+            writer.flush();
             writer.close();
         } catch (Exception e) {
             e.printStackTrace();
