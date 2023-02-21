@@ -20,7 +20,7 @@ import java.nio.file.StandardOpenOption;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-
+@Service
 public class FileUploadService extends FileServiceGrpc.FileServiceImplBase {
 
     /**

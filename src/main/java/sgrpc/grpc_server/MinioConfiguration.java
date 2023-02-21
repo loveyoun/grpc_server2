@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
-@Configuration
+//@Configuration
 public class MinioConfiguration {
 
     @Value("${minio.access.key}")
@@ -21,13 +21,13 @@ public class MinioConfiguration {
     private String minioUrl;
 
 
-    @Primary
-    @Bean
+//    @Primary
+//    @Bean
     public FileUploadService fileUploadService(){
         return new FileUploadService(minioClient());
     }
     //@Primary
-    @Bean
+    //@Bean
     public MinioClient minioClient(){
         //MinIO 서버에 접근할 수 있도록 Minio Client 객체 생성
         try {
